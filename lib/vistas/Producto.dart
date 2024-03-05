@@ -1,7 +1,12 @@
+import 'dart:js_util';
+
 import 'package:curso/Clases/Product.dart';
 import 'package:curso/Navegador.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:soundpool/soundpool.dart';
+
 
 import 'Texto.dart';
 import 'Catalogo.dart';
@@ -9,6 +14,7 @@ import 'Catalogo.dart';
 class Producto extends StatefulWidget {
   final String titulo;
   final Product id; // Asegúrate de que Product sea el tipo correcto
+
 
   const Producto({Key? key, required this.titulo, required this.id})
       : super(key: key);
@@ -18,8 +24,10 @@ class Producto extends StatefulWidget {
 }
 
 class _ProductoState extends State<Producto> {
+
   @override
   Widget build(BuildContext context) {
+    Soundpool pool = Soundpool(streamType: StreamType.notification);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -39,12 +47,26 @@ class _ProductoState extends State<Producto> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.deepOrange, width: 3)),
-                  child: Image.network(
-                    widget.id.imageUrl,
-                    width: 400,
-                    height: 450,
-                    fit: BoxFit.fitWidth,
-                  ),
+                  child: GestureDetector(
+                    onTap:() async {
+                      //print(widget.id.name);
+                        if(widget.id.name == "Jordan del Mails"){
+                        int soundId = await rootBundle.load("assets/musica/sunflower.mp3").then((ByteData soundData) {
+                          return pool.load(soundData);
+                        });
+                        int streamId = await pool.play(soundId);
+                      }else{
+
+                      }
+
+                    },
+                    child: Image.network(
+                      widget.id.imageUrl,
+                      width: 400,
+                      height: 450,
+                      fit: BoxFit.fitWidth,
+                    ),
+                  )
                 )),
             Positioned(
               bottom: 20,
