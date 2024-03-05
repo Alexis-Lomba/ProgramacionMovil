@@ -1,3 +1,4 @@
+import 'package:curso/Navegador.dart';
 import 'package:flutter/material.dart';
 
 class Calculadora extends StatefulWidget {
@@ -45,6 +46,7 @@ class _CalculadoraState extends State<Calculadora> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.titulo),
       ),
+      drawer: Navegador(),
       body: Center(
         child: Container(
           height: 337,

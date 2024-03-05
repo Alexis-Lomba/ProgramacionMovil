@@ -1,3 +1,4 @@
+import 'package:curso/Navegador.dart';
 import 'package:flutter/material.dart';
 
 class Contador extends StatefulWidget {
@@ -24,6 +25,7 @@ class _MyHomePageState extends State<Contador> {
       appBar:  AppBar(
         title:  Text(widget.title),
       ),
+      drawer: Navegador(),
       body:  Center(
         child:  Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -9,6 +9,7 @@ class Texto extends StatefulWidget {
   @override
   State<Texto> createState() => _TextoState();
 }
+
 class MyModel extends ChangeNotifier {
   String _inputValue = '';
 
@@ -20,8 +21,7 @@ class MyModel extends ChangeNotifier {
   }
 }
 
-class _TextoState extends State<Texto>{
-  String value = "";
+class _TextoState extends State<Texto> {
   @override
   Widget build(BuildContext context) {
     final myModel = Provider.of<MyModel>(context);
@@ -30,47 +30,38 @@ class _TextoState extends State<Texto>{
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.titulo),
       ),
-      body:Center(
-
+      body: Center(
         child: Column(
           children: <Widget>[
             Padding(
-              padding:  const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
-                onChanged: (value){
+                onChanged: (value) {
                   setState(() {
                     myModel.setInputValue(value);
                   });
                 },
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your username',
-
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter your username',
                 ),
               ),
             ),
             const SizedBox(height: 20.0),
             // Muestra el valor actual de la variable
             Text('Valor ingresado: ${myModel.inputValue}'),
-             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                 child: ElevatedButton(
-                   style: ElevatedButton.styleFrom(
-                     shadowColor: const Color.fromARGB(150, 195, 132, 118)
-                   ),
-                   onPressed: () {
-                     value = "";
-                   },
-                   child: const Text( "Enviar"),
-                 ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    shadowColor: const Color.fromARGB(150, 195, 132, 118)),
+                onPressed: () {},
+                child: const Text("Enviar"),
+              ),
             ),
           ],
         ),
-
-          ),
-        );
-
-}
-
-
+      ),
+    );
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:curso/Navegador.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -20,6 +21,7 @@ class _GeoState extends State<Geo> {
       appBar: AppBar(
         title: Text(widget.titulo),
       ),
+      drawer: Navegador(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -27,22 +29,19 @@ class _GeoState extends State<Geo> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: Text(
-                  'Latitud: $_latitud',
-                  style: const TextStyle(
-                    fontSize: 30
-                  ),
+                'Latitud: $_latitud',
+                style: const TextStyle(fontSize: 30),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: Text(
-                  'Longitud: $_longitud',
-                    style: const TextStyle(
-                        fontSize: 30
-                    ),
+                'Longitud: $_longitud',
+                style: const TextStyle(fontSize: 30),
               ),
             ),
-            GetLocationButton(this), // Pasar una referencia de _GeoState al constructor de GetLocationButton
+            GetLocationButton(
+                this), // Pasar una referencia de _GeoState al constructor de GetLocationButton
           ],
         ),
       ),
@@ -70,13 +69,14 @@ class _GeoState extends State<Geo> {
 class GetLocationButton extends StatelessWidget {
   final _GeoState geoState; // Mantener una referencia a _GeoState
 
-    const GetLocationButton(this.geoState, {super.key}); // Constructor
+  const GetLocationButton(this.geoState, {super.key}); // Constructor
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        geoState._getLocation(context); // Llamar al método _getLocation de _GeoState
+        geoState._getLocation(
+            context); // Llamar al método _getLocation de _GeoState
       },
       child: const Text('Obtener Ubicación'),
     );
