@@ -1,5 +1,6 @@
 import 'package:curso/Navegador.dart';
 import 'package:curso/vistas/Producto.dart';
+import 'package:curso/vistas/calculadora.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +29,22 @@ class _CatalogoState extends State<Catalogo> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Productos'),
+          actions: [
+            IconButton(
+              iconSize: 50,
+              icon: Icon(Icons.search),
+              tooltip: 'Buscar',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Calculadora(titulo: "prueba buscador" ),
+                  ),
+                );
+              },
+            ),
+
+          ],
         ),
         drawer: Navegador(),
         body: Container(

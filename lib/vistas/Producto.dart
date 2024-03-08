@@ -23,8 +23,7 @@ class _ProductoState extends State<Producto> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(
-            ''), // Deja este espacio en blanco para que no se muestre ningún título en la barra de navegación
+        title: Text(''), // Deja este espacio en blanco para que no se muestre ningún título en la barra de navegación
       ),
       body: Container(
         color: Colors.black,
@@ -32,7 +31,7 @@ class _ProductoState extends State<Producto> {
           alignment: Alignment.center,
           children: [
             Positioned(
-                top: 25,
+                top: 35,
                 child: Container(
                   width: 520,
                   height: 400,
@@ -47,7 +46,7 @@ class _ProductoState extends State<Producto> {
                   ),
                 )),
             Positioned(
-              bottom: 20,
+              bottom: 50,
               child: Column(
                 children: [
                   Text(
