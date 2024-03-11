@@ -23,7 +23,7 @@ class _CuentaState extends State<Cuenta> {
       color: Colors.black,
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: ListView(
+        child: ListView(padding: EdgeInsetsDirectional.all(150),
           children: <Widget>[
             Container(
               alignment: Alignment.center,
@@ -80,7 +80,7 @@ class _CuentaState extends State<Cuenta> {
             ),
             Container(
               height: 50,
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: ElevatedButton(
                 child: const Text('Iniciar sesión', style: TextStyle(color: Colors.deepOrange)),
                 onPressed: () {
