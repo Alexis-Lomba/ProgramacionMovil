@@ -1,8 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'Producto.dart';
 class ProductService {
-  final DatabaseReference _productsRef = FirebaseDatabase.instance.reference()
-      .child('productos');
+  final DatabaseReference _productsRef = FirebaseDatabase.instance.reference().child('productos');
 
   Future<void> saveProduct(Producto producto) async {
     await _productsRef.push().set(producto.toMap());
@@ -33,6 +32,27 @@ class ProductService {
           }
         });
       }
+    }
+
+    return productos;
+  }
+  Future<List<Producto>> searchProductsByName(String name) async {
+    DatabaseEvent event =
+    await _productsRef.orderByChild('nomProducto').equalTo(name).once();
+    DataSnapshot snapshot = event.snapshot;
+    List<Producto> productos = [];
+
+    if (snapshot.value != null) {
+      Map<dynamic, dynamic> data = snapshot.value as Map<dynamic, dynamic>;
+      data.forEach((key, value) {
+        Producto producto = Producto(
+         // id: key,
+          nomProducto: value['nomProducto'],
+          precio: value['precio'] ?? 0.0,
+          descripcion: value['descripcion'] ?? '',
+        );
+        productos.add(producto);
+      });
     }
 
     return productos;

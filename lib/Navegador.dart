@@ -2,6 +2,8 @@ import 'dart:html';
 
 import 'package:curso/vistas/Catalogo.dart';
 import 'package:curso/vistas/Inicio.dart';
+import 'package:curso/vistas/ProductScreen.dart';
+import 'package:curso/vistas/ProductSearchScreen.dart';
 import 'package:curso/vistas/geo.dart';
 import 'package:flutter/material.dart';
 import 'vistas/calculadora.dart';
@@ -124,6 +126,54 @@ class _NavegadorState extends State<Navegador> {
                       MaterialPageRoute(
                           builder: (context) => Catalogo(
                             titulo: 'Productos',
+                          )));
+                },
+                hoverColor: Colors.deepOrange,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  border: Border.all(color: Colors.grey)),
+              child: ListTile(
+                leading: Icon(Icons.plus_one),
+                iconColor: Colors.white,
+                title: const Text('Productos',
+                    style: TextStyle(color: Colors.white),
+                    selectionColor: Colors.red),
+                onTap: () {
+                  Navigator.pop(context); // Cierra el Drawer
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProductScreen(
+                            //titulo: 'Productos',
+                          )));
+                },
+                hoverColor: Colors.deepOrange,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  border: Border.all(color: Colors.grey)),
+              child: ListTile(
+                leading: Icon(Icons.search),
+                iconColor: Colors.white,
+                title: const Text('Productos',
+                    style: TextStyle(color: Colors.white),
+                    selectionColor: Colors.red),
+                onTap: () {
+                  Navigator.pop(context); // Cierra el Drawer
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProductSearchScreen(
+                            //titulo: 'Productos',
                           )));
                 },
                 hoverColor: Colors.deepOrange,

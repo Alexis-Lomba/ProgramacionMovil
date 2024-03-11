@@ -1,11 +1,11 @@
 class Producto {
-  final String id;
+  String? id;
   final String nomProducto;
   final double precio;
   final String descripcion;
 
   Producto({
-    required this.id,
+    this.id,
     required this.nomProducto,
     required this.precio,
     required this.descripcion,
@@ -23,7 +23,6 @@ class Producto {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'nomProducto': nomProducto,
       'precio': precio,
       'descripcion': descripcion,

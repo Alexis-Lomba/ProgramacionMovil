@@ -12,7 +12,7 @@ class menuProductos{
     Product(
         name: 'Tenis god',
         description: 'Unos tenis super god de los cuales seras el mas god',
-        imageUrl: 'assets/imagenes/superGod.png',
+        imageUrl: 'assets/imagenes/Tenis GOD.png',
         precio: "\$2000"
     ),
     Product(
