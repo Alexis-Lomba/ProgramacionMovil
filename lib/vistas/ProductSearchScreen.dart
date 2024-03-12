@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../firebase/ProductService.dart';
 import '../firebase/Producto.dart';
+import 'ProductoF.dart';
 
 
 class ProductSearchScreen extends StatefulWidget {
@@ -38,13 +39,45 @@ class _ProductSearchScreenState extends State<ProductSearchScreen> {
               itemCount: _searchResults.length,
               itemBuilder: (context, index) {
                 Producto producto = _searchResults[index];
-                return ListTile(
-                  title: Text(producto.nomProducto),
-                  subtitle: Text(
-                      'Precio: \$${producto.precio}'),
-                  onTap: () {
-                    // Implementa aquí lo que deseas hacer cuando se selecciona un producto
-                  },
+                return Container(
+                  height: 90,
+                  child: Card(
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      side: BorderSide(color: Colors.deepOrange, width: 2),
+                    ),
+                    margin: EdgeInsetsDirectional.all(12.5),
+                    child: ListTile(
+                      leading: ClipRect(
+                        child: Image.network(
+                          'assets/imagenes/'+producto.nomProducto+'.png',
+                          fit: BoxFit.cover,
+                          width: 200,
+                          height: 200,
+                          alignment: Alignment.centerRight,
+                        ),
+                      ),
+                      title: Text(producto.nomProducto),
+                      subtitle: Text(producto.descripcion),
+                      trailing: Text(producto.precio),
+                      onTap: () {
+                        //Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ProductoF(
+                                      titulo: producto.nomProducto, id: Producto(
+                                      nomProducto: producto.nomProducto,
+                                      id: producto.id,
+                                      descripcion: producto.descripcion,
+                                      precio: producto.precio,
+                                    ),
+                                    )));
+                      },
+                    ),
+                  ),
                 );
               },
             ),

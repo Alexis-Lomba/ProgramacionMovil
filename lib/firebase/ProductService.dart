@@ -48,7 +48,7 @@ class ProductService {
         Producto producto = Producto(
          // id: key,
           nomProducto: value['nomProducto'],
-          precio: value['precio'] ?? 0.0,
+          precio: value['precio'].toString(),
           descripcion: value['descripcion'] ?? '',
         );
         productos.add(producto);
