@@ -18,9 +18,10 @@ class _InicioState extends State<Inicio> {
   Widget build(BuildContext context) {
     final myModel = Provider.of<MyModel>(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      appBar: AppBar(iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.deepOrange,
         title: Text(widget.titulo),
+          titleTextStyle:  TextStyle(color: Colors.white, fontSize: 20)
       ),
       drawer: Navegador(),
       body: Center(

@@ -1,25 +1,34 @@
+import 'dart:js_util';
+
 import 'package:curso/Clases/Product.dart';
 import 'package:curso/Navegador.dart';
+import 'package:curso/firebase/Producto.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:soundpool/soundpool.dart';
+
 
 import 'Texto.dart';
 import 'Catalogo.dart';
 
-class Producto extends StatefulWidget {
+class ProductoF extends StatefulWidget {
   final String titulo;
-  final Product id; // Asegúrate de que Product sea el tipo correcto
+  final Producto id; // Asegúrate de que Product sea el tipo correcto
 
-  const Producto({Key? key, required this.titulo, required this.id})
+
+  const ProductoF({Key? key, required this.titulo, required this.id})
       : super(key: key);
 
   @override
-  State<Producto> createState() => _ProductoState();
+  State<ProductoF> createState() => _ProductoFState();
 }
 
-class _ProductoState extends State<Producto> {
+class _ProductoFState extends State<ProductoF> {
+
   @override
   Widget build(BuildContext context) {
+    Soundpool pool = Soundpool(streamType: StreamType.notification);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -38,19 +47,35 @@ class _ProductoState extends State<Producto> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.deepOrange, width: 3)),
-                  child: Image.network(
-                    widget.id.imageUrl,
-                    width: 400,
-                    height: 450,
-                    fit: BoxFit.fitWidth,
-                  ),
+                  child: GestureDetector(
+                    onTap:() async {
+                      //print(widget.id.name);
+                       int streamId;
+                       int soundId;
+                        if(widget.id.nomProducto == "Jordan del Mails"){
+                         soundId = await rootBundle.load("assets/musica/sunflower.mp3").then((ByteData soundData) {
+                          return pool.load(soundData);
+                        });
+                        streamId = await pool.play(soundId);
+
+                        }else{
+
+                        }
+
+                    },
+                    child: Image.network("assets/imagenes/"+widget.id.nomProducto+".png",
+                      width: 400,
+                      height: 450,
+                      fit: BoxFit.fitWidth,
+                    ),
+                  )
                 )),
             Positioned(
               bottom: 50,
               child: Column(
                 children: [
                   Text(
-                    widget.id.name,
+                    widget.id.nomProducto,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -62,7 +87,7 @@ class _ProductoState extends State<Producto> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        widget.id.precio,
+                        widget.id.precio as String,
                         style: TextStyle(color: Colors.white),
                       )
                     ],
@@ -77,7 +102,7 @@ class _ProductoState extends State<Producto> {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    widget.id.description,
+                    widget.id.descripcion,
                     style: TextStyle(color: Colors.white),
                   ),
                 ],
