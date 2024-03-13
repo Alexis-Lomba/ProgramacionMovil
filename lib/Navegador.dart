@@ -20,11 +20,6 @@ class Navegador extends StatefulWidget {
 class _NavegadorState extends State<Navegador> {
   @override
   Widget build(BuildContext context) {
-    // Scaffold(
-    //  appBar: AppBar(
-    //  title: const Text('Productos', style: TextStyle(color: Colors.white)),
-    //backgroundColor: Colors.grey,
-    //),
     return Drawer(
         backgroundColor: Colors.black,
         child: ListView(
@@ -118,6 +113,66 @@ class _NavegadorState extends State<Navegador> {
                 leading: Icon(Icons.plus_one),
                 iconColor: Colors.white,
                 title: const Text('Productos',
+                    style: TextStyle(color: Colors.white),
+                    selectionColor: Colors.red),
+                onTap: () {
+                  Navigator.pop(context); // Cierra el Drawer
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProductScreen(
+                            //titulo: 'Productos',
+                          )));
+                },
+                hoverColor: Colors.deepOrange,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  border: Border.all(color: Colors.grey)),
+              child: ListTile(
+                leading: Icon(Icons.shopping_cart),
+                iconColor: Colors.white,
+                title: const Text('Carrito',
+                    style: TextStyle(color: Colors.white),
+                    selectionColor: Colors.red),
+                onTap: () {
+                  Navigator.pop(context); // Cierra el Drawer
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProductScreen(
+                            //Mau aqui por la pestaña qeu crees el carrito',
+                          )));
+                },
+                hoverColor: Colors.deepOrange,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+              child: ListTile(
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+              child: ListTile(
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  border: Border.all(color: Colors.grey)),
+              child: ListTile(
+                leading: Icon(Icons.exit_to_app),
+                iconColor: Colors.white,
+                title: const Text('Cerrar sesion',
                     style: TextStyle(color: Colors.white),
                     selectionColor: Colors.red),
                 onTap: () {

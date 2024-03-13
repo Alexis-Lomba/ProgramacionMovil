@@ -19,9 +19,14 @@ class _CuentaState extends State<Cuenta> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.black,
-      child: Padding(
+    return Scaffold(
+        backgroundColor: Colors.black,
+        appBar: AppBar(
+          title: Text('Inicio de sesión'),
+          backgroundColor: Colors.deepOrange,
+        ),
+      drawer: Navegador(),
+      body: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(padding: EdgeInsetsDirectional.all(150),
           children: <Widget>[
